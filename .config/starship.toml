@@ -1,0 +1,162 @@
+# Starship Configuration
+# https://starship.rs/config/
+
+# タイムアウト設定（高速化）
+command_timeout = 1000
+scan_timeout = 30
+
+# プロンプトのフォーマット（1行表示）
+format = """
+$time\
+$directory\
+$git_branch\
+$git_status\
+$git_state\
+$cmd_duration\
+$character"""
+
+# 右側のプロンプト（オプション）
+# right_format = """$all"""
+
+# ============================================================================
+# プロンプト構成要素の設定
+# ============================================================================
+
+# タイムスタンプ（dd HH:mm 形式）
+[time]
+disabled = false
+format = '[$time]($style) '
+style = 'bold yellow'
+time_format = '%d %H:%M'
+
+# ユーザー名（無効化）
+[username]
+disabled = true
+
+# ホスト名（無効化）
+[hostname]
+disabled = true
+
+# カレントディレクトリ
+[directory]
+truncation_length = 3
+truncate_to_repo = true
+format = '[$path]($style)[$read_only]($read_only_style) '
+style = 'bold cyan'
+read_only = ' 🔒'
+read_only_style = 'red'
+
+# Git ブランチ
+[git_branch]
+symbol = ' '
+format = '[$symbol$branch(:$remote_branch)]($style) '
+style = 'bold purple'
+truncation_length = 20
+truncation_symbol = '…'
+
+# Git ステータス（無効化）
+[git_status]
+disabled = true
+
+# Git の状態（マージ、リベースなど）
+[git_state]
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+style = 'bright-black'
+
+# Git メトリクス（無効化）
+[git_metrics]
+disabled = true
+
+# コマンド実行時間
+[cmd_duration]
+min_time = 500
+format = 'took [$duration]($style) '
+style = 'bold yellow'
+show_milliseconds = false
+
+# 文字プロンプト
+[character]
+success_symbol = '🐈 [~>](bold green)'
+error_symbol = '🐈 [~>](bold red)'
+vimcmd_symbol = '🐈 [~>](bold green)'
+
+# ============================================================================
+# プログラミング言語表示
+# ============================================================================
+
+# プログラミング言語表示（すべて無効化）
+[nodejs]
+disabled = true
+
+[python]
+disabled = true
+
+[ruby]
+disabled = true
+
+[rust]
+disabled = true
+
+[golang]
+disabled = true
+
+[terraform]
+disabled = true
+
+[docker_context]
+disabled = true
+
+# Package version（無効化）
+[package]
+disabled = true
+
+# ============================================================================
+# その他のツール
+# ============================================================================
+
+# AWS
+[aws]
+format = 'on [$symbol($profile )(\($region\) )(\[$duration\] )]($style)'
+symbol = '☁️  '
+style = 'bold yellow'
+disabled = true
+
+# バッテリー
+[battery]
+full_symbol = '🔋 '
+charging_symbol = '⚡️ '
+discharging_symbol = '💀 '
+disabled = true
+
+[[battery.display]]
+threshold = 10
+style = 'bold red'
+
+[[battery.display]]
+threshold = 30
+style = 'bold yellow'
+
+# メモリ使用量
+[memory_usage]
+disabled = true
+threshold = 75
+format = 'via $symbol [${ram_pct}]($style) '
+symbol = ' '
+style = 'bold dimmed white'
+
+# Shell
+[shell]
+disabled = true
+format = '[$indicator]($style) '
+fish_indicator = 'fish'
+bash_indicator = 'bash'
+zsh_indicator = 'zsh'
+style = 'cyan bold'
+
+# ジョブ数
+[jobs]
+symbol = '✦'
+number_threshold = 1
+symbol_threshold = 1
+format = '[$symbol$number]($style) '
+style = 'bold blue'
